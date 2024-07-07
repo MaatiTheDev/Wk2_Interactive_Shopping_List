@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Shopping List</title>
+    <style>
+        .purchased {
+            text-decoration: line-through;
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Shopping List</h1>
+    <input type="text" id="itemInput" placeholder="Enter item">
+    <button id="addButton">Add</button>
+    <button id="clearButton">Clear List</button>
+    <ul id="shoppingList"></ul>
+
+    <script>
+        const shoppingList = [];
+        const itemInput = document.getElementById('itemInput');
+        const addButton = document.getElementById('addButton');
+        const clearButton = document.getElementById('clearButton');
+        const shoppingListElement = document.getElementById('shoppingList');
+
+        function renderList() {
+            shoppingListElement.innerHTML = '';
+            shoppingList.forEach((item, index) => {
+                const li = document.createElement('li');
+                li.textContent = item.name;
+                if (item.purchased) {
+                    li.classList.add('purchased');
+                }
+                li.addEventListener('click', () => togglePurchased(index));
+                shoppingListElement.appendChild(li);
+            });
+        }
+
+        function addItem() {
+            const itemName = itemInput.value.trim();
+            if (itemName) {
+                shoppingList.push({ name: itemName, purchased: false });
+                itemInput.value = '';
+                renderList();
+            }
+        }
+
+        function togglePurchased(index) {
+            shoppingList[index].purchased = !shoppingList[index].purchased;
+            renderList();
+        }
+
+        function clearList() {
+            shoppingList.length = 0;
+            renderList();
+        }
+
+        addButton.addEventListener('click', addItem);
+        clearButton.addEventListener('click', clearList);
+        itemInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                addItem();
+            }
+        });
+
+        renderList();
+    </script>
+</body>
+</html>
