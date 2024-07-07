@@ -1,8 +1,9 @@
 # Interactive Shopping List App
 
 ## Description
+These is an interactive shopping list app that is asimple and friendly web application that can allow useers to generate their shopping list.I bult it with HTML and javascript.It provide practical way to keep record of item need to be purchased
 
-This Interactive Shopping List App is a simple, user-friendly web application that allows users to create and manage their shopping list. Built with HTML, CSS, and JavaScript, it provides a practical way to keep track of items you need to purchase.
+
 
 ## Features
 
